@@ -322,6 +322,7 @@ void DoubleBinaryTreeAllReduce::run(EventType event, CallData* data) {
          MemBus::Transmition::Usual))
         ->send_to_NPU();
     state = State::SendingDataToChilds;
+    stream->owner->notify_stream_ready(); // Notify the scheduler that the broadcast phase has begun
     return;
   } else if (
       state == State::SendingDataToChilds &&
