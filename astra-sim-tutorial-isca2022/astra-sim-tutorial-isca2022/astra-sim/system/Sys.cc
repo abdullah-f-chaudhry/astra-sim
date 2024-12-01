@@ -1686,6 +1686,22 @@ void Sys::ask_for_schedule(int max) {
   }
   return;
 }
+
+///////////////////////////////////////////////////////////////////
+void Sys::notify_stream_ready() {
+    // Schedule the next stream
+    schedule_next_stream();
+}
+
+void Sys::schedule_next_stream() {
+    if (ready_list.empty()) {
+        return;
+    }
+    // Schedule one stream from the ready list
+    schedule(1);
+}
+////////////////////////////////////////////////////////////////////
+
 void Sys::schedule(int num) {
   int ready_list_size = ready_list.size();
   int counter = std::min(num, ready_list_size);
