@@ -172,6 +172,9 @@ class Sys : public Callable {
   void insert_into_ready_list(BaseStream* stream);
   void ask_for_schedule(int max);
   void schedule(int num);
+  
+  void notify_stream_ready();
+  void schedule_next_stream();
 
   void register_phases(
       BaseStream* stream,
